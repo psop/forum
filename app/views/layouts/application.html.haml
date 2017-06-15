@@ -1,7 +1,7 @@
 !!!
 %html
 %head
-	%title Liz's Rails Forum
+	%title Mackenzie's Rails Forum
 	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
 	%link{ rel: "stylesheet", href: "http://fonts.googleapis.com/css?family=Lato:300,400,700", type: "text/css"}
 	%link{:rel => "stylesheet", :href => "http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css"}/
@@ -11,9 +11,13 @@
 	%header.main_header.clearfix
 		.wrapper
 			#logo
-				%p Liz's Rails Forum
+				%p= link_to "Liz's Rails Forum", root_path
 			#buttons
-				= link_to "New Post", new_post_path
+				- if user_signed_in?
+					= link_to "New Post", new_post_path
+				- else
+					= link_to "Sign Up", new_user_registration_path
+					= link_to "Sign In", new_user_session_path
 	.wrapper
 		%p.notice= notice
 		%p.alert= alert
